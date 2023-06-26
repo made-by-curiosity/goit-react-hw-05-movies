@@ -3,8 +3,6 @@ import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getMovieReviews } from 'services/moviesApi';
 
-const IMG_500W_PATH = 'https://image.tmdb.org/t/p/w500';
-
 export const Reviews = () => {
   const [reviews, setReviews] = useState([]);
   const { movieId } = useParams();
