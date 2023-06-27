@@ -5,7 +5,7 @@ import { getMovieCredits } from 'services/moviesApi';
 
 const IMG_500W_PATH = 'https://image.tmdb.org/t/p/w500';
 
-export const Cast = () => {
+const Cast = () => {
   const [cast, setCast] = useState([]);
   const { movieId } = useParams();
 
@@ -32,3 +32,5 @@ export const Cast = () => {
     </ul>
   );
 };
+
+export default Cast;

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useRef } from 'react';
+import { Suspense } from 'react';
 import { useEffect } from 'react';
 import { Link, Outlet, useParams, useLocation } from 'react-router-dom';
 import { getMovieInfo } from 'services/moviesApi';
@@ -23,7 +24,13 @@ const MovieDetails = () => {
     })();
   }, [movieId]);
 
-  const { poster_path, title, genres = [], overview, vote_average } = movieInfo;
+  const {
+    poster_path,
+    title,
+    genres = [],
+    overview,
+    vote_average = 0,
+  } = movieInfo;
   const moviePoster = poster_path ? IMG_500W_PATH + poster_path : '';
   const scorePercentage = (vote_average * 10).toFixed();
 
@@ -59,7 +66,9 @@ const MovieDetails = () => {
             <Link to="reviews">Reviews</Link>
           </li>
         </ul>
-        <Outlet />
+        <Suspense fallback={<div>Loading...</div>}>
+          <Outlet />
+        </Suspense>
       </div>
     </div>
   );
