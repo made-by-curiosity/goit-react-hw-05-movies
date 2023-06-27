@@ -9,6 +9,7 @@ const MoviesList = ({ movies }) => {
     <FilmsList>
       {movies.map(movie => (
         <li key={movie.id}>
+          <TbMovie />
           <Link to={`/movies/${movie.id}`} state={{ from: location }}>
             {movie.title}
           </Link>

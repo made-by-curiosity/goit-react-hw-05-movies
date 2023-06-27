@@ -12,6 +12,10 @@ const Movies = () => {
   const queryName = searchParams.get('query');
 
   useEffect(() => {
+    if (!queryName) {
+      return;
+    }
+
     (async () => {
       try {
         setIsLoading(true);
@@ -28,11 +32,11 @@ const Movies = () => {
   const onSearch = e => {
     e.preventDefault();
 
-    if (!e.target.elements.query.value) {
+    if (!e.target.elements.query.value.trim()) {
       return;
     }
 
-    setSearchParams({ query: e.target.elements.query.value });
+    setSearchParams({ query: e.target.elements.query.value.trim() });
 
     e.target.reset();
   };
