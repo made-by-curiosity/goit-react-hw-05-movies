@@ -1,3 +1,5 @@
+import { PageContainer } from './Container.styled';
+
 export const Container = ({ children }) => {
-  return <div>{children}</div>;
+  return <PageContainer>{children}</PageContainer>;
 };

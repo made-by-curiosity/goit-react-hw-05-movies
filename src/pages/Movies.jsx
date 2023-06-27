@@ -1,25 +1,29 @@
+import MoviesList from 'components/MoviesList/MoviesList';
+import Section from 'components/Section/Section';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import { Link, useLocation, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import { searchMovies } from 'services/moviesApi';
 
 const Movies = () => {
   const [movies, setMovies] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
-  const location = useLocation();
+  const queryName = searchParams.get('query');
 
   useEffect(() => {
     (async () => {
       try {
-        const searchMoviesResult = await searchMovies(
-          searchParams.get('query')
-        );
+        setIsLoading(true);
+        const searchMoviesResult = await searchMovies(queryName);
         setMovies(searchMoviesResult.data.results);
       } catch (error) {
         console.log(error);
+      } finally {
+        setIsLoading(false);
       }
     })();
-  }, [searchParams]);
+  }, [queryName]);
 
   const onSearch = e => {
     e.preventDefault();
@@ -34,24 +38,17 @@ const Movies = () => {
   };
 
   return (
-    <div>
-      <h2>Movies page</h2>
+    <Section>
       <form onSubmit={onSearch}>
         <input type="text" name="query" />
         <button type="submit">Search</button>
       </form>
-      {movies.length !== 0 && (
-        <ul>
-          {movies.map(movie => (
-            <li key={movie.id}>
-              <Link to={`${movie.id}`} state={{ from: location }}>
-                {movie.title}
-              </Link>
-            </li>
-          ))}
-        </ul>
+      {!isLoading && <MoviesList movies={movies} />}
+      {isLoading && <div>Trying to find {queryName} movie</div>}
+      {movies.length === 0 && queryName && !isLoading && (
+        <p>Sorry, we don't have any movies with name {queryName}</p>
       )}
-    </div>
+    </Section>
   );
 };
 

@@ -39,7 +39,7 @@ export const getMovieInfo = movieId => {
 export const getMovieCredits = movieId => {
   const options = {
     method: 'GET',
-    url: `${BASE_URL + MOVIE_INFO_PATH}${movieId}/credits`,
+    url: `${BASE_URL + MOVIE_INFO_PATH + movieId}/credits`,
     params: {
       api_key: API_KEY,
     },
@@ -54,7 +54,7 @@ export const getMovieCredits = movieId => {
 export const getMovieReviews = movieId => {
   const options = {
     method: 'GET',
-    url: `${BASE_URL + MOVIE_INFO_PATH}${movieId}/reviews`,
+    url: `${BASE_URL + MOVIE_INFO_PATH + movieId}/reviews`,
     params: {
       api_key: API_KEY,
     },
