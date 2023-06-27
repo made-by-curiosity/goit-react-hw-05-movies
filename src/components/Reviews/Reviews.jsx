@@ -10,11 +10,14 @@ export const Reviews = () => {
   useEffect(() => {
     (async () => {
       const movieReviews = await getMovieReviews(movieId);
-      console.log(movieReviews);
 
       setReviews(movieReviews.data.results);
     })();
   }, [movieId]);
+
+  if (reviews.length === 0) {
+    return <p>We don't have any reviews for this movie</p>;
+  }
 
   return (
     <ul>
