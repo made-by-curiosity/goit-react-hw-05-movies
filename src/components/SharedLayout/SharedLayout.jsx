@@ -2,6 +2,7 @@ import { Suspense } from 'react';
 import { Container } from 'components/Container/Container';
 import { Outlet } from 'react-router-dom';
 import { MenuLink, MenuList, PageHeader } from './SharedLayout.styled';
+import { LoadingFallback } from 'components/LoadingFallback/LoadingFallback';
 
 export const SharedLayout = () => {
   return (
@@ -19,7 +20,7 @@ export const SharedLayout = () => {
         </nav>
       </PageHeader>
       <main>
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<LoadingFallback />}>
           <Outlet />
         </Suspense>
       </main>

@@ -1,4 +1,5 @@
 import MoviesList from 'components/MoviesList/MoviesList';
+import { SearchFrom } from 'components/SearchForm/SearchForm';
 import Section from 'components/Section/Section';
 import { useEffect } from 'react';
 import { useState } from 'react';
@@ -30,23 +31,12 @@ const Movies = () => {
   }, [queryName]);
 
   const onSearch = e => {
-    e.preventDefault();
-
-    if (!e.target.elements.query.value.trim()) {
-      return;
-    }
-
     setSearchParams({ query: e.target.elements.query.value.trim() });
-
-    e.target.reset();
   };
 
   return (
     <Section>
-      <form onSubmit={onSearch}>
-        <input type="text" name="query" />
-        <button type="submit">Search</button>
-      </form>
+      <SearchFrom onSearch={onSearch}></SearchFrom>
       {!isLoading && <MoviesList movies={movies} />}
       {isLoading && <div>Trying to find {queryName} movie</div>}
       {movies.length === 0 && queryName && !isLoading && (

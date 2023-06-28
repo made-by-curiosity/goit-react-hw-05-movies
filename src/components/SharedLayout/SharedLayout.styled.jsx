@@ -30,7 +30,14 @@ export const MenuLink = styled(NavLink)`
   font-weight: 600;
   color: #000;
 
+  &:hover,
+  &:focus {
+    color: orangered;
+  }
+
   &.active {
     color: orangered;
+    border-bottom: 2px solid orangered;
+    border-top: 2px solid orangered;
   }
 `;

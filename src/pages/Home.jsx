@@ -19,11 +19,9 @@ const Home = () => {
   }, []);
 
   return (
-    <>
-      <Section title="Trending today">
-        <MoviesList movies={movies} />
-      </Section>
-    </>
+    <Section title="Trending today">
+      <MoviesList movies={movies} />
+    </Section>
   );
 };
 

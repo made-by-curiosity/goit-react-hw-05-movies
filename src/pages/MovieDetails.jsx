@@ -1,11 +1,16 @@
+import { AdditionalInfo } from 'components/AdditionalInfo/AdditionalInfo';
+import { MovieInfo } from 'components/MovieInfo/MovieInfo';
+import { ReturnBtn } from 'components/ReturnBtn/ReturnBtn';
+import Section from 'components/Section/Section';
 import { useState } from 'react';
 import { useRef } from 'react';
-import { Suspense } from 'react';
 import { useEffect } from 'react';
-import { Link, Outlet, useParams, useLocation } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import { getMovieInfo } from 'services/moviesApi';
 
 const IMG_500W_PATH = 'https://image.tmdb.org/t/p/w500';
+const defaultImg =
+  'https://ireland.apollo.olxcdn.com/v1/files/0iq0gb9ppip8-UA/image;s=1000x700';
 
 const MovieDetails = () => {
   const [movieInfo, setMovieInfo] = useState([]);
@@ -31,46 +36,26 @@ const MovieDetails = () => {
     overview,
     vote_average = 0,
   } = movieInfo;
-  const moviePoster = poster_path ? IMG_500W_PATH + poster_path : '';
+
+  const moviePoster = poster_path ? IMG_500W_PATH + poster_path : defaultImg;
   const scorePercentage = (vote_average * 10).toFixed();
 
-  return (
-    <div>
-      <Link to={backLinkLocationRef.current}>&#129044; Go back</Link>
+  if (movieInfo.length === 0) {
+    return;
+  }
 
-      <div>
-        <h3>main info</h3>
-        <div>
-          <img src={moviePoster} alt={title} />
-        </div>
-        <div>
-          <h2>{title}</h2>
-          <p>User score: {scorePercentage}%</p>
-          <h3>Overview</h3>
-          <p>{overview}</p>
-          <h4>Genres</h4>
-          <p>
-            {genres.map(({ name }) => (
-              <span key={name}>{name}</span>
-            ))}
-          </p>
-        </div>
-      </div>
-      <div>
-        <p>Additional information</p>
-        <ul>
-          <li>
-            <Link to="cast">Cast</Link>
-          </li>
-          <li>
-            <Link to="reviews">Reviews</Link>
-          </li>
-        </ul>
-        <Suspense fallback={<div>Loading...</div>}>
-          <Outlet />
-        </Suspense>
-      </div>
-    </div>
+  return (
+    <Section>
+      <ReturnBtn backLink={backLinkLocationRef.current} />
+      <MovieInfo
+        title={title}
+        overview={overview}
+        genres={genres}
+        moviePoster={moviePoster}
+        scorePercentage={scorePercentage}
+      />
+      <AdditionalInfo />
+    </Section>
   );
 };
 
