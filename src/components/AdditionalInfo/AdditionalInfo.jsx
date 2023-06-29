@@ -1,13 +1,13 @@
 import { Suspense } from 'react';
 import { Link, Outlet } from 'react-router-dom';
+import { GiAlliedStar, Gi3DGlasses } from 'react-icons/gi';
+import { LoadingFallback } from 'components/LoadingFallback/LoadingFallback';
 import {
   AdditionalMovieInfo,
   InfoMenu,
   MenuInfoItem,
   MenuList,
 } from './AdditionalInfo.styled';
-import { GiAlliedStar, Gi3DGlasses } from 'react-icons/gi';
-import { LoadingFallback } from 'components/LoadingFallback/LoadingFallback';
 
 export const AdditionalInfo = () => {
   return (

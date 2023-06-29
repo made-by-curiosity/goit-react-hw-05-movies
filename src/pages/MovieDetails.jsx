@@ -1,11 +1,9 @@
+import { useState, useRef, useEffect } from 'react';
+import { useParams, useLocation } from 'react-router-dom';
 import { AdditionalInfo } from 'components/AdditionalInfo/AdditionalInfo';
 import { MovieInfo } from 'components/MovieInfo/MovieInfo';
 import { ReturnBtn } from 'components/ReturnBtn/ReturnBtn';
 import Section from 'components/Section/Section';
-import { useState } from 'react';
-import { useRef } from 'react';
-import { useEffect } from 'react';
-import { useParams, useLocation } from 'react-router-dom';
 import { getMovieInfo } from 'services/moviesApi';
 
 const IMG_500W_PATH = 'https://image.tmdb.org/t/p/w500';

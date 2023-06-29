@@ -1,7 +1,6 @@
+import { useState, useEffect } from 'react';
 import MoviesList from 'components/MoviesList/MoviesList';
 import Section from 'components/Section/Section';
-import { useState } from 'react';
-import { useEffect } from 'react';
 import { getTrendingMovies } from 'services/moviesApi';
 
 const Home = () => {

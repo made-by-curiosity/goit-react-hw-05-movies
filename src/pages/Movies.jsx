@@ -1,9 +1,8 @@
-import MoviesList from 'components/MoviesList/MoviesList';
-import { SearchFrom } from 'components/SearchForm/SearchForm';
-import Section from 'components/Section/Section';
-import { useEffect } from 'react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import MoviesList from 'components/MoviesList/MoviesList';
+import Section from 'components/Section/Section';
+import { SearchFrom } from 'components/SearchForm/SearchForm';
 import { searchMovies } from 'services/moviesApi';
 
 const Movies = () => {

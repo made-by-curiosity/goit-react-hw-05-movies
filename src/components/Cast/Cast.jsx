@@ -1,8 +1,7 @@
-import { useState } from 'react';
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { getMovieCredits } from 'services/moviesApi';
 import { ActorItem, ActorName, ActorsList } from './Cast.styled';
+import { getMovieInfo } from 'services/moviesApi';
 
 const IMG_500W_PATH = 'https://image.tmdb.org/t/p/w500';
 const defaultImg =
@@ -14,7 +13,7 @@ const Cast = () => {
 
   useEffect(() => {
     (async () => {
-      const movieCredits = await getMovieCredits(movieId);
+      const movieCredits = await getMovieInfo(movieId, '/credits');
       setCast(movieCredits.data.cast);
     })();
   }, [movieId]);

@@ -1,8 +1,8 @@
 import { Suspense } from 'react';
-import { Container } from 'components/Container/Container';
 import { Outlet } from 'react-router-dom';
-import { MenuLink, MenuList, PageHeader } from './SharedLayout.styled';
+import { Container } from 'components/Container/Container';
 import { LoadingFallback } from 'components/LoadingFallback/LoadingFallback';
+import { MenuLink, MenuList, PageHeader } from './SharedLayout.styled';
 
 export const SharedLayout = () => {
   return (

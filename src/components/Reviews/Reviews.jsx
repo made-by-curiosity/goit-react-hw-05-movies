@@ -1,9 +1,8 @@
-import { useState } from 'react';
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { getMovieReviews } from 'services/moviesApi';
-import { ReviewsList } from './Reviews.styled';
 import { BsChatTextFill } from 'react-icons/bs';
+import { ReviewsList } from './Reviews.styled';
+import { getMovieInfo } from 'services/moviesApi';
 
 const Reviews = () => {
   const [reviews, setReviews] = useState([]);
@@ -11,7 +10,7 @@ const Reviews = () => {
 
   useEffect(() => {
     (async () => {
-      const movieReviews = await getMovieReviews(movieId);
+      const movieReviews = await getMovieInfo(movieId, '/reviews');
 
       setReviews(movieReviews.data.results);
     })();
